@@ -7,7 +7,7 @@ import Error404 from '../components/error/Error404';
 Vue.use(Router);
 
 export default new Router({
-    base: 'addressbookv3',
+    base: 'addressbook',
     routes: [
         {
             path: '',

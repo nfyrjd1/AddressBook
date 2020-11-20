@@ -1,7 +1,7 @@
 import Axios from 'axios';
 
 const api = Axios.create({
-    baseURL: 'http://localhost/addressbookv3/api/'
+    baseURL: 'http://localhost/addressbook/api/'
 });
 
 export const getContacts = async (page = 1, pageSize = 10, search = null) => {

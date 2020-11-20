@@ -5,7 +5,7 @@ define('DB_NAME', 'addressbook');
 define('DB_USER', 'user');
 define('DB_PASS', '1234');
 
-define('DOMEN', '/AddressBookV3/');
+define('DOMEN', '/AddressBook/');
 define('SITE_ROOT', $_SERVER['DOCUMENT_ROOT'] . DOMEN);
 define('SITE_URL', 'http://' . $_SERVER['HTTP_HOST'] . DOMEN);
 define('IMAGES_URL', SITE_URL . 'userImages/');
