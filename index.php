@@ -1,31 +1,19 @@
 <?php
-include_once 'config/const.php';
-include_once DB_PATH;
 
+require_once('config/const.php');
+require_once('vendor/autoload.php');
 
-$db = new mysql();
+use AddressBook\Contact\Controller\ApiController;
 
-$view = isset($_GET['view']) ? $_GET['view'] : 'list';
-$data = '';
+$response = null;
 
-switch ($view) {
-    case 'card':
-        include_once SRC_PATH . 'controller/ContactController.php';
-        $controller = new ContactController();
-        break;
-
-    case 'list':
-        include_once SRC_PATH . 'controller/ContactListController.php';
-        $controller = new ContactListController();
-        break;
-
-    default:
-        include_once SRC_PATH . 'controller/Error404Controller.php';
-        $controller = new Error404Controller();
-        break;
+//Если есть параметры, то на api
+$params = explode('/', $_GET['req']);
+if (isset($params) && $params[0] == 'api') {
+    $api = new ApiController();
+    $response = $api->process($params);
+    echo ($response);
+} else {
+    //front
+    include(CLIENT_PATH);
 }
-
-$data = $controller->process();
-
-
-include_once 'template/index.php';

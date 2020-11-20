@@ -1,10 +1,14 @@
 <?php
+
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'addressbook');
 define('DB_USER', 'user');
 define('DB_PASS', '1234');
 
-define('SITE_ROOT', $_SERVER['DOCUMENT_ROOT'].'/AddressBook/');
-define('DB_PATH', SITE_ROOT.'core/db/mysql.php');
-define('SRC_PATH', SITE_ROOT.'src/contact/');
-define('IMAGES_PATH', SITE_ROOT.'userImages/');
+define('DOMEN', '/AddressBookV3/');
+define('SITE_ROOT', $_SERVER['DOCUMENT_ROOT'] . DOMEN);
+define('SITE_URL', 'http://' . $_SERVER['HTTP_HOST'] . DOMEN);
+define('IMAGES_URL', SITE_URL . 'userImages/');
+define('IMAGES_PATH', SITE_ROOT . 'userImages/');
+
+define('CLIENT_PATH', SITE_ROOT.'client/dist/index.html');

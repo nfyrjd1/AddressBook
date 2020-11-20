@@ -1,40 +1,78 @@
 <?php
-include_once SRC_PATH.'controller/Layout.php';
-include_once SRC_PATH.'controller/Error404Controller.php';
-include_once SRC_PATH.'model/ContactCardModel.php';
+/*
+* Контроллер контакта
+*/
 
+namespace AddressBook\Contact\Controller;
 
-class ContactController extends Layout
+use AddressBook\Contact\Model\ContactCardModel;
+use AddressBook\Contact\Model\ContactModel;
+use AddressBook\Contact\Controller\ErrorController;
+
+class ContactController
 {
-    public function process()
+    /*
+    * Получение контакта
+    * 
+    * @param int id Идентификатор контакта
+    *
+    * @return string
+    */
+    public function getContact(int $id): string
     {
-        if (isset($_POST['id'])) {
-            $errors = ContactModel::processContact($_POST);
-            if (isset($errors)) {
-                return $html = $this->getView('Error', [
-                    'errors' => $errors,
-                    'redirect' => isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : 'index.php'
-                ]);
-            }
+        $contactCardModel = new ContactCardModel();
+        $contact = $contactCardModel->getContact($id);
+        if (isset($contact)) {
+            return json_encode($contact, JSON_UNESCAPED_UNICODE);
+        } else {
+            $error = new ErrorController();
+            return $error->error404("Контакт не найден");
         }
+    }
 
-        if (isset($_GET['id'])) {
-            $id = (int)$_GET['id'];
-
-            $contactCardModel = new ContactCardModel();
-            $contact = $contactCardModel->getContact($id);
-            if ($contact) {
-                $html = $this->getView('ContactCard', [
-                    'contact' => $contact
-                ]);
-            }
+    /*
+    * Установка изображения контакта
+    * 
+    * @param int id Идентификатор контакта
+    *
+    * @return string
+    */
+    public function setImage(int $id) : string
+    {
+        $contact = ContactModel::updateContactImage($id);
+        //Проверка на масссив ошибок при изменении
+        if (is_array($contact)) {
+            $error = new ErrorController();
+            return $error->error400($contact);
+        } else {
+            //Возвращает идентификатор изменённого контакта
+            http_response_code(200);
+            return json_encode([
+                "contactId" => $contact
+            ], JSON_UNESCAPED_UNICODE);
         }
+    }
 
-        if (!isset($html)) {
-            $controller = new Error404Controller();
-            $html = $controller->process();
+    /*
+    * Добавление/изменение контакта
+    * 
+    * @param array contactData Ассоциативный массив с контактом
+    *
+    * @return string
+    */
+    public function processContact(array $contactData): string
+    {
+        $contact = ContactModel::processContact($contactData);
+        //Проверка на масссив ошибок при обработке
+        if (is_array($contact)) {
+            $error = new ErrorController();
+            return $error->error400($contact);
+        } else {
+            //Возвращает идентификатор изменённого контакта
+            http_response_code(200);
+            return json_encode([
+                "contactId" => $contact
+            ], JSON_UNESCAPED_UNICODE);
         }
-
-        return $html;
     }
 }

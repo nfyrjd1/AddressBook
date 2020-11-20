@@ -1,0 +1,17 @@
+{
+    "name": "nfyrjd1/address-book-api",
+    "authors": [
+        {
+            "name": "nfyrjd1",
+            "email": "nfyrjd1@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "AddressBook\\Core\\Db\\": "core/db/",
+            "AddressBook\\Contact\\": "src/contact/"
+        }
+    },
+    "description": ""
+}
