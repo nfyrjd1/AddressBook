@@ -26,6 +26,8 @@ class mysql
         $this->pass = $pass;
         $this->dbhost = $dbhost;
         $this->dbname = $dbname;
+
+        $this->connect();
     }
 
     public function getMysql() {
@@ -44,6 +46,7 @@ class mysql
                 $this->result = $stmt->get_result();
             }
         } catch (Exception $e) {
+            exit;
         }
 
         return $this->result;

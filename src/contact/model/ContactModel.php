@@ -49,7 +49,7 @@ class ContactModel
             $name = htmlspecialchars($data['name']);
 
             $phone = htmlspecialchars($data['phone']);
-            if (empty($phone) && !preg_match('/\+\d{0,1}-\d{0,3}-\d{0,3}-\d{0,2}-\d{0,2}$/', $phone)) {
+            if (empty($phone) && !preg_match('^/\+\d{1}-\d{3}-\d{3}-\d{2}-\d{2}$/', $phone)) {
                 array_push($errors, 'Номер телефона представлен в неверном формате!');
             }
 

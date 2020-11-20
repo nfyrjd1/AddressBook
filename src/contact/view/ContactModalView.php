@@ -13,7 +13,7 @@
             </p>
             <p>
                 <label for="contact-phone">Номер телефона</label>
-                <input class="input" id="contact-phone" pattern="\+\d{0,1}-\d{0,3}-\d{0,3}-\d{0,2}-\d{0,2}$" name="phone" type="tel" required placeholder="+7-123-456-78-90">
+                <input class="input" id="contact-phone" pattern="^\+\d{1}-\d{3}-\d{3}-\d{2}-\d{2}$" name="phone" type="tel" required placeholder="+7-123-456-78-90">
             </p>
             <p>
                 <label for="contact-address">Адрес</label>
