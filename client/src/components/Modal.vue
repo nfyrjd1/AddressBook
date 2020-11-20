@@ -133,7 +133,7 @@
 </template>
 
 <script>
-import { required, maxLength, email } from "vuelidate/lib/validators";
+import { required, maxLength, email } from 'vuelidate/lib/validators';
 
 export default {
   name: "Modal",
@@ -157,15 +157,15 @@ export default {
       },
       set(value) {
         const x = value
-          .replace(/\D/g, "")
+          .replace(/\D/g, '')
           .match(/(\d{0,1})(\d{0,3})(\d{0,3})(\d{0,2})(\d{0,2})/);
         this.contact.phone = null;
         this.contact.phone = !x[2]
           ? x[1]
           : `+${x[1]}-${x[2]}` +
-            (x[3] ? `-${x[3]}` : "") +
-            (x[4] ? `-${x[4]}` : "") +
-            (x[5] ? `-${x[5]}` : "");
+            (x[3] ? `-${x[3]}` : '') +
+            (x[4] ? `-${x[4]}` : '') +
+            (x[5] ? `-${x[5]}` : '');
       },
     },
     name: {
@@ -222,8 +222,7 @@ export default {
   },
   methods: {
     closeModal() {
-      console.log("1");
-      this.$store.commit("hideModal");
+      this.$store.commit('hideModal');
     },
 
     async modalSubmit(e) {
@@ -234,23 +233,23 @@ export default {
 
       const errors = this.$store.state.modal.postErrors;
 
-      await this.$store.dispatch("postContact", this.contact);
+      await this.$store.dispatch('postContact', this.contact);
 
       if (errors.length == 0 && this.imageFile) {
         const formData = new FormData();
-        formData.append("id", this.$store.state.modal.contact.id);
-        formData.append("image", this.imageFile);
-        await this.$store.dispatch("postContactImage", formData);
+        formData.append('id', this.$store.state.modal.contact.id);
+        formData.append('image', this.imageFile);
+        await this.$store.dispatch('postContactImage', formData);
       }
 
       if (errors.length == 0) {
         this.$store.dispatch(
-          "updateContact",
+          'updateContact',
           this.$store.state.modal.contact.id
         );
       }
 
-      this.$store.commit("hideModal");
+      this.$store.commit('hideModal');
     },
 
     imagePicked(e) {
@@ -267,7 +266,7 @@ export default {
       this.contact = contact;
     }
 
-    window.addEventListener("keyup", e => {
+    window.addEventListener('keyup', e => {
       if (e.keyCode === 27) {
         this.closeModal();
       }

@@ -24,10 +24,10 @@
 
 <script>
 export default {
-  name: "Error",
+  name: 'Error',
   methods: {
     clearErrors() {
-      this.$store.commit("clearErrors");
+      this.$store.commit('clearErrors');
     },
   },
   beforeDestroy() {

@@ -16,7 +16,7 @@
 
 <script>
 export default {
-  name: "Paginator",
+  name: 'Paginator',
   computed: {
     paginatorItems() {
       const paginator = [];
@@ -26,7 +26,7 @@ export default {
 
       if (i >= 2)
         paginator.push({
-          title: "Начало",
+          title: 'Начало',
           page: 1,
         });
 
@@ -45,7 +45,7 @@ export default {
 
       if (page <= pagesCount) {
         paginator.push({
-          title: "Последняя",
+          title: 'Последняя',
           page: pagesCount,
           current: page == pagesCount
         });

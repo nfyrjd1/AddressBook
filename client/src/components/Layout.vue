@@ -15,11 +15,11 @@
 </template>
 
 <script>
-import Error from "./error/Error";
-import Modal from "./Modal";
+import Error from './error/Error';
+import Modal from './Modal';
 
 export default {
-  name: "Layout",
+  name: 'Layout',
   components: {
     Error,
     Modal,

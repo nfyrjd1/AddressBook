@@ -24,13 +24,13 @@
 </template>
 
 <script>
-import Loading from "../Loading";
+import Loading from '../Loading';
 
 export default {
-  name: "ContactCard",
+  name: 'ContactCard',
   data() {
     return {
-      id: this.$route.params["id"],
+      id: this.$route.params['id'],
       contact: {
         name: null,
         phone: null,
@@ -43,7 +43,7 @@ export default {
   },
   watch: {
     $route(toR) {
-      this.id = toR.params["id"];
+      this.id = toR.params['id'];
     },
   },
   components: {

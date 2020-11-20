@@ -55,7 +55,7 @@ export default {
             dispatch('loadContacts');
         },
         async loadContact({ commit }, id) {
-            commit("setLoading", true);
+            commit('setLoading', true);
 
             let contact = null;
             const response = await getContact(id);
@@ -63,7 +63,7 @@ export default {
                 contact = {...response, id: +response.id};
             }
             
-            commit("setLoading", false);
+            commit('setLoading', false);
             return contact;
         },
         async updateContact({ commit, dispatch, state }, id) {

@@ -32,13 +32,13 @@
 </template>
 
 <script>
-import Loading from "../Loading";
-import ContactSearch from "./ContactSearch";
-import ContactListItem from "./ContactListItem";
-import Paginator from "./Paginator.vue";
+import Loading from '../Loading';
+import ContactSearch from './ContactSearch';
+import ContactListItem from './ContactListItem';
+import Paginator from './Paginator.vue';
 
 export default {
-  name: "ContactList",
+  name: 'ContactList',
   computed: {
     contacts() {
       return this.$store.state.contact.contacts;
@@ -46,10 +46,10 @@ export default {
   },
   methods: {
     addContact() {
-      this.$store.commit("showAddingModal");
+      this.$store.commit('showAddingModal');
     },
     editContact(contact) {
-      this.$store.commit("showEditModal", { ...contact });
+      this.$store.commit('showEditModal', { ...contact });
     },
   },
   components: {
@@ -59,7 +59,7 @@ export default {
     Paginator,
   },
   mounted() {
-    this.$store.dispatch("loadContacts");
+    this.$store.dispatch('loadContacts');
   },
 };
 </script>
